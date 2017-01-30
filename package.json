@@ -1,11 +1,11 @@
 {
-  "name": "organizador-de-fotos",
+  "name": "photo-organizer",
   "version": "1.0.0",
   "description": "",
   "main": "app/index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "Thiago Berne",
+  "license": "MIT"
 }

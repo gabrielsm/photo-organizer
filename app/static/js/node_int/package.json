@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Thiago Berne",
+  "license": "MIT",
   "dependencies": {
     "exif": "^0.6.0",
     "file-type": "^4.1.0",
