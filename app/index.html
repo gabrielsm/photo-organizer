@@ -3,26 +3,28 @@
 	<head>
 		<title>Organizador de fotos</title>
 		<script src="static/js/bower_components/jquery/dist/jquery.min.js" type="text/javascript"></script>
-		<script src="static/js/app.js" type="text/javascript"></script>
+		<script src="static/js/config.js" type="text/javascript"></script>
+		<script src="static/js/utils.js" type="text/javascript"></script>
+		<script src="static/js/index.js" type="text/javascript"></script>
 	</head>
 	<body>
 		<form>
 			<fieldset title="Configuration">
 				<div>
 					<label for="srcFolder">Source folder</label>
-					<input type="file" name="srcFolder" nwdirectory>
+					<input type="file" name="srcFolderSelect" nwdirectory>
+					<input type="hidden" name="srcFolder">
 				</div>
 				<div>
 					<label for="trgFolder">Target folder</label>
-					<input type="file" name="trgFolder" nwdirectory>
+					<input type="file" name="trgFolderSelect" nwdirectory>
+					<input type="hidden" name="trgFolder">
 				</div>
 				<div>
-					<label for="expression">Expression</label>
-					<input type="text" name="expression">
+					<span title="Gravar" id="write">Gravar</span>
 				</div>
 				<div>
-					<button title="Ler" id="read">Ler</button>
-					<button title="Gravar" id="write">Gravar</button>
+					<span title="Prosseguir" id="proceed">Prosseguir</span>
 				</div>
 			</fieldset>
 		</form>
