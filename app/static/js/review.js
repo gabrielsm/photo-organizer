@@ -32,7 +32,6 @@ $("#tree").fancytree({
 });
 
 $(document).ready(() => {
-			debugger;
 	let search = window.location.search;
 	let extractParamRegex = /srcFolder=([^&]+)&trgFolder=(.*)/;
 	let res = extractParamRegex.exec(search);

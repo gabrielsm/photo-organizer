@@ -17,7 +17,6 @@
 		log(`Cfg file: ${cfgFile}`);
 
 		function readConfiguration() {
-			debugger;
 			log("Reading config file...");
 
 			var cfg;
@@ -37,7 +36,6 @@
 		}
 
 		function saveConfiguration(cfg) {
-			debugger;
 			log("Saving config file...");
 			fs.writeJsonSync(cfgFile, cfg, {encoding: "UTF-8"});
 			log("Cfg file written.");

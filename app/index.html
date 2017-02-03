@@ -3,32 +3,40 @@
 	<head>
 		<title>Organizador de fotos</title>
 		<script src="static/js/bower_components/jquery/dist/jquery.min.js" type="text/javascript"></script>
+		<script src="static/js/bower_components/angular/angular.min.js" type="text/javascript"></script>
 		<script src="static/js/config.js" type="text/javascript"></script>
 		<script src="static/js/utils.js" type="text/javascript"></script>
 		<script src="static/js/index.js" type="text/javascript"></script>
 	</head>
-	<body>
+	<body ng-app="app" ng-controller="MainController">
 		<form>
 			<fieldset title="Configuration">
 				<div>
 					<label for="srcFolder">Source folder</label>
-					<input type="file" name="srcFolderSelect" nwdirectory>
-					<input type="hidden" name="srcFolder">
-					<span name="srcFolderDisplay"></span>
-					<button name="srcFolderChange" title="Alterar">Alterar</button>
+					<input type="file" name="srcFolderSelect" nwdirectory ng-change="srcFolderChanged" ng-model="src.value" ng-show="!src.hasValue || src.change">
+					<input type="hidden" name="srcFolder" ng-bind="src.value">
+					<span name="srcFolderDisplay" ng-show="src.hasValue &amp;&amp; !src.change">{{src.value}}</span>
+					<button name="srcFolderChange" title="Alterar" ng-show="src.hasValue &amp;&amp; !src.change" ng-click="src.change = true">Alterar</button>
+					<div>
+						value: {{src.value}}<br>
+						hasValue: {{src.hasValue}}<br>
+						change: {{src.change}}
+					</div>
 				</div>
 				<div>
 					<label for="trgFolder">Target folder</label>
-					<input type="file" name="trgFolderSelect" nwdirectory>
-					<input type="hidden" name="trgFolder">
-					<span name="trgFolderDisplay"></span>
-					<button name="trgFolderChange" title="Alterar">Alterar</button>
+					<input type="file" name="trgFolderSelect" nwdirectory ng-change="trgFolderChanged" ng-model="trg.value" ng-show="!trg.hasValue || trg.change">
+					<input type="hidden" name="trgFolder" ng-bind="trg.value">
+					<span name="trgFolderDisplay" ng-show="trg.hasValue &amp;&amp; !trg.change">{{trg.value}}</span>
+					<button name="trgFolderChange" title="Alterar" ng-show="trg.hasValue &amp;&amp; !trg.change" ng-click="trg.change = true">Alterar</button>
+					<div>
+						value: {{trg.value}}<br>
+						hasValue: {{trg.hasValue}}<br>
+						change: {{trg.change}}
+					</div>
 				</div>
 				<div>
-					<span title="Gravar" id="write">Gravar</span>
-				</div>
-				<div>
-					<span title="Prosseguir" id="proceed">Prosseguir</span>
+					<button title="Prosseguir" ng-click="proceed()">Prosseguir</button>
 				</div>
 			</fieldset>
 		</form>
