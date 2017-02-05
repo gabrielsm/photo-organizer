@@ -1,6 +1,6 @@
 window.utils = {
 	isNull: function(obj) {
-		return !utils.isNull(obj);
+		return !utils.notNull(obj);
 	},
 
 	notNull: function(obj) {

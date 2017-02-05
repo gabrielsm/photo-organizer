@@ -1,7 +1,8 @@
-const appCfg = window.AppConfig;
-
 (function($, angular) {
+	const appCfg = window.AppConfig;
 	const log = console.log;
+	const fs = require("fs-extra");
+
 	var cfg = appCfg.get();
 
 	var mainController;
@@ -23,7 +24,6 @@ const appCfg = window.AppConfig;
 		mainController = this;
 
 		this.change = function (type, val) {
-			log(`AQUI ${type}!!!!!!!!!!`);
 			$scope[type].value = val;
 			$scope[type].hasValue = utils.notNull(val);
 			$scope[type].change = false;
@@ -49,12 +49,44 @@ const appCfg = window.AppConfig;
 		["src", "trg"].forEach(t => init(t));
 
 		$scope.proceed = function() {
-			var targetURL = `review.html?srcFolder=${encodeURIComponent($scope.src.value)}&trgFolder=${encodeURIComponent($scope.trg.value)}`;
-			window.location.href = targetURL;
+
+			var src = $scope.src.value;
+			var trg = $scope.trg.value;
+
+			if(utils.isNull(src) || utils.isNull(trg)) {
+				alert("Por favor, selecione as pastas origem e destino.");
+				return;
+			}
+
+			if(src == trg) {
+				alert("As pastas origem e destino não devem ser a mesma.");
+				return;
+			}
+
+			if(!fs.existsSync(src)) {
+				alert("A pasta origem não existe.");
+				return;
+			}
+
+			var srcStat = fs.lstatSync(src);
+			if(!srcStat.isDirectory()) {
+				alert("A pasta origem não é um diretório.");
+				return;
+			}
+
+			if(fs.existsSync(trg)) {
+				var trgStat = fs.lstatSync(trg);
+				if(!trgStat.isDirectory()) {
+					alert("A pasta destino existe e não é um diretório.");
+					return;
+				}
+			}
+
+			window.location.href = "review.html";
 		}
 	}
 
 	angular
-	.module("app", [])
-	.controller("MainController", ["$scope", MainController]);
+		.module("app", [])
+		.controller("MainController", ["$scope", MainController]);
 })($, angular);
